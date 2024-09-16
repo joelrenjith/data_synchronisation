@@ -111,6 +111,25 @@ My application is built using Spring Boot and PostgreSQL, providing robust real-
    - save the trigger
 * now the user can use his google sheets and database and synchronisation will start.
 
+### Future Scope:
+
+To enhance the scalability and efficiency of the application, several improvements are planned:
+
+* **Apache Kafka Integration:**
+
+  - _High-Frequency Requests_: Implementing Kafka will enable the application to handle high-frequency requests by storing all requests in Kafka topics. This approach will help prevent the loss of requests and ensure that no data is missed.
+  - _Topic Partitioning:_ By partitioning Kafka topics, the application will benefit from faster bulk data management, as partitions allow for parallel processing and better performance.
+* **Conflict Management:**
+
+  - _Semaphores vs. Locks_: For managing conflicts when multiple users edit the same table, the application will use semaphores or locks. Given the design of the application, I would prefer semaphores for their simpler implementation.
+    
+* **Global Scaling:**
+
+  - _YugaByte Database:_ To ensure global scalability, the application will leverage YugaByte’s database solution. The paid version of YugaByte supports global data replication, enabling seamless data distribution and high availability across different geographical locations.
+ 
+    
+These enhancements will provide robust handling of high-frequency data requests, efficient conflict management, and scalable data distribution, preparing the application for future growth and expanded use cases.
+
 
 ### Video:
 [**Watch the video**](https://drive.google.com/file/d/1ItHfXC3zhYEcZADYyoaXU_pSkeHIPba5/view?usp=sharing)
