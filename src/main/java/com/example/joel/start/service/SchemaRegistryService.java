@@ -1,9 +1,9 @@
-package com.example.yuga.start.service;
+package com.example.joel.start.service;
 
+import com.example.joel.start.repos.SchemaRegistryRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
-import com.example.yuga.start.repos.SchemaRegistryRepository;
 
 @Service
 public class SchemaRegistryService {

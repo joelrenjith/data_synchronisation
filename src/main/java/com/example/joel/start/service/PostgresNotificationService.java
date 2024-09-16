@@ -1,8 +1,7 @@
-package com.example.yuga.start.service;
+package com.example.joel.start.service;
 
-import com.example.yuga.start.gsheet.SheetsService;
-import com.example.yuga.start.repos.SchemaRegistryRepository;
-import org.postgresql.PGConnection;
+import com.example.joel.start.gsheet.SheetsService;
+import com.example.joel.start.repos.SchemaRegistryRepository;
 import org.postgresql.PGNotification;
 import org.postgresql.jdbc.PgConnection;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -54,16 +53,17 @@ public class PostgresNotificationService {
 //                        System.out.println("Received notification: " + notification.getParameter().formatted());
                         String ans = notification.getParameter();
                         System.out.println("ans = "+ans);
-                        SqlNotificationPayload sqlNotificationPayload = SqlNotificationPayload.fromNotification(ans);
+                        SqlNotificationPayload sqlNotificationPayload = SqlNotificationPayload.fromNotification(notification.getParameter());
                         // Further processing logic (e.g., trigger service or handle data)
-                        System.out.println(sqlNotificationPayload.toString());
+                        System.out.println("sql="+ sqlNotificationPayload);
 
                         Map<String, String> mapping =schemaRegistryRepository.getGSheetColumnMapping(sqlNotificationPayload);
-                        if(sqlNotificationPayload.getType().equals("DELETE")){
-                                sheetsService.deleteRowIfExists("1dexgjeGyQt4ZBq8Z0fCaQRAIX7ARZKUkHMmNjRkgUTY",mapping);
+                        String sheetId = schemaRegistryRepository.getLink(sqlNotificationPayload.getTableName());
+                        if(sqlNotificationPayload.getOperation().equals("DELETE")){
+                                sheetsService.deleteRowIfExists(sheetId,mapping);
                         }
                         else {
-                            sheetsService.insertData("1dexgjeGyQt4ZBq8Z0fCaQRAIX7ARZKUkHMmNjRkgUTY", mapping);
+                            sheetsService.insertData(sheetId, mapping);
                         }
 
                     }
@@ -73,7 +73,7 @@ public class PostgresNotificationService {
                 Thread.sleep(500);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

@@ -1,7 +1,7 @@
-package com.example.yuga.start.service;
+package com.example.joel.start.service;
 
-import com.example.yuga.start.controller.NotificationPayload;
-import com.example.yuga.start.repos.DynamicTableRepository;
+import com.example.joel.start.controller.NotificationPayload;
+import com.example.joel.start.repos.DynamicTableRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -89,7 +89,7 @@ public class DynamicTableService {
         List<String> primaryKeys = getPrimaryKeyColumns(tableName);
 
         // Reverse the order of the column names (if needed)
-        List<String> reversedColumns = new ArrayList<>(columns.keySet());
+//        List<String> reversedColumns = new ArrayList<>(columns.keySet());
         // Collections.reverse(reversedColumns); // Uncomment if you want to reverse the order
 
         StringBuilder functionSql = new StringBuilder()
@@ -103,7 +103,7 @@ public class DynamicTableService {
                 .append("    IF TG_OP = 'INSERT' THEN\n")
                 .append("        operation := 'INSERT';\n")
                 .append("        row_data := jsonb_build_object(\n")
-                .append(reversedColumns.stream()
+                .append(columns.keySet().stream()
                         .map(col -> String.format("            '%s', NEW.%s", col, col))
                         .collect(Collectors.joining(",\n")))
                 .append("\n        );\n")
@@ -115,7 +115,7 @@ public class DynamicTableService {
                 .append("    ELSIF TG_OP = 'UPDATE' THEN\n")
                 .append("        operation := 'UPDATE';\n")
                 .append("        row_data := jsonb_build_object(\n")
-                .append(reversedColumns.stream()
+                .append(columns.keySet().stream()
                         .map(col -> String.format("            '%s', NEW.%s", col, col))
                         .collect(Collectors.joining(",\n")))
                 .append("\n        );\n")
@@ -127,7 +127,7 @@ public class DynamicTableService {
                 .append("    ELSIF TG_OP = 'DELETE' THEN\n")
                 .append("        operation := 'DELETE';\n")
                 .append("        row_data := jsonb_build_object(\n")
-                .append(reversedColumns.stream()
+                .append(columns.keySet().stream()
                         .map(col -> String.format("            '%s', OLD.%s", col, col))
                         .collect(Collectors.joining(",\n")))
                 .append("\n        );\n")
@@ -141,15 +141,18 @@ public class DynamicTableService {
                 .append("        format('Table: %s - Operation: %s - Data: %s - PrimaryKey: %s', \n")
                 .append("            '").append(tableName).append("',\n")
                 .append("            operation,\n")
-                .append("            row_data::text,\n")
-                .append("            pk_data::text\n")
+                .append("            row_data::jsonb,\n")  // Ensure it's passed as valid JSONB
+                .append("            pk_data::jsonb\n")    // Ensure primary key is passed as JSONB
                 .append("        )\n")
                 .append("    );\n")
                 .append("    RETURN NEW;\n")
                 .append("END;\n")
                 .append("$$ LANGUAGE plpgsql;\n");
 
+
+        // Log the SQL statement for debugging purposes
         System.out.println(functionSql.toString());
+
         // Execute the SQL to create the function
         jdbcTemplate.execute(functionSql.toString());
     }

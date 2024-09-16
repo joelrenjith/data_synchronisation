@@ -1,4 +1,4 @@
-package com.example.yuga.start;
+package com.example.joel.start;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

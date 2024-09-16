@@ -1,13 +1,13 @@
-package com.example.yuga.start;
+package com.example.joel.start;
 
 
-import com.example.yuga.start.gsheet.SheetsService;
-import com.example.yuga.start.service.DynamicTableService;
+import com.example.joel.start.gsheet.SheetsService;
+import com.example.joel.start.service.DynamicTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import java.io.IOException;
+
 import java.util.*;
 
 @SpringBootApplication
@@ -37,7 +37,8 @@ public class StartApplication implements CommandLineRunner {
 		System.out.println("want to create new table?");
 		if(in.next().equals("yes")) {
 			System.out.println("enter sheet id");
-			String sheetid = in.next();
+			String url = in.next();
+			String sheetid = extractSheetId(url);
 			System.out.println("enter table name");
 			String tableName = in.next();
 			System.out.println("enter columns");
@@ -74,4 +75,17 @@ public class StartApplication implements CommandLineRunner {
 //		System.out.println("Data from table: " + result);
 
     }
+	public static String extractSheetId(String url) {
+		// Regular expression to match the ID in the URL
+		String regex = "/d/([a-zA-Z0-9-_]+)";
+		java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+		java.util.regex.Matcher matcher = pattern.matcher(url);
+
+		if (matcher.find()) {
+			return matcher.group(1);
+		} else {
+			System.out.println("Invalid URL or ID not found");
+			return null;
+		}
+	}
 }

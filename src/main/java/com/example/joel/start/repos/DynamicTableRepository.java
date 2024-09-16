@@ -1,6 +1,5 @@
-package com.example.yuga.start.repos;
+package com.example.joel.start.repos;
 
-import com.example.yuga.start.controller.NotificationPayload;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.List;

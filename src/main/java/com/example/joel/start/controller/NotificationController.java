@@ -1,6 +1,6 @@
-package com.example.yuga.start.controller;
+package com.example.joel.start.controller;
 
-import com.example.yuga.start.service.DynamicTableService;
+import com.example.joel.start.service.DynamicTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

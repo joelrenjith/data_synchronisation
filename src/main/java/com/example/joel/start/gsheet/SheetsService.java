@@ -1,4 +1,4 @@
-package com.example.yuga.start.gsheet;
+package com.example.joel.start.gsheet;
 
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.Permission;
@@ -104,6 +104,7 @@ public class SheetsService {
         List<List<Object>> existingData = response.getValues();
 
         int targetRow = -1; // Initialize target row to indicate not found
+        try{
         String columnAValue = data.get("A").toString(); // Get the value for column A from the map
 
         // Search for the row where column A matches the value provided
@@ -114,6 +115,10 @@ public class SheetsService {
                     break;
                 }
             }
+        }
+        }
+        catch (Exception e){
+//            System.out.println("");
         }
 
         // If the row is not found, append data after the last filled row

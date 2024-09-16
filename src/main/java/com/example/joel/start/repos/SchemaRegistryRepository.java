@@ -1,6 +1,6 @@
-package com.example.yuga.start.repos;
+package com.example.joel.start.repos;
 
-import com.example.yuga.start.service.SqlNotificationPayload;
+import com.example.joel.start.service.SqlNotificationPayload;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -58,7 +58,7 @@ public class SchemaRegistryRepository {
 
     public Map<String, String> getGSheetColumnMapping(SqlNotificationPayload payload) {
         // Extract the table name
-        String tableName = extractTableName(payload);
+        String tableName = payload.getTableName();
         System.out.println("Extracted table name: " + tableName);
 
         // Query to get the column mappings
@@ -82,16 +82,7 @@ public class SchemaRegistryRepository {
         return gsheetMapping;
     }
 
-    private String extractTableName(SqlNotificationPayload payload) {
-        // First, try to extract from the type field
-        String[] typeParts = payload.getType().split(" ", 2);
-        if (typeParts.length > 1) {
-            return typeParts[1].toLowerCase().trim();
-        }
 
-        // If that fails, use a default table name or another method to determine it
-        return "";  // Default to 'boys' if we can't extract it from the type
-    }
 
     public void insertIntoSchemaLink(String link, String tableName) {
         String query = "INSERT INTO schema_link (link, table_name) VALUES (?, ?)";
