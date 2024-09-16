@@ -86,7 +86,7 @@ My application is built using Spring Boot and PostgreSQL, providing robust real-
 
 * **Java Development Kit (JDK):**
 
-- Version 11 or newer, as Spring Boot typically supports recent LTS versions.
+  - Version 11 or newer, as Spring Boot typically supports recent LTS versions.
 
 * **PostgreSQL**
   
@@ -97,6 +97,8 @@ My application is built using Spring Boot and PostgreSQL, providing robust real-
     ```
 ### Application-Setup:
 * Visit google marketplace > search for sheets > click on the google sheets api and click enable > click on credentails and add a service account > click on the service account and select keys > create a new key, download it and put the JSON file into the directory right outside the src directory in the project.
+* in the application.properties file enter your postgres database name in the url and your postgres username and password.
+  
 ### User-Setup:
 * The user has to make a Google Sheet and change access from "Restricted" to "Anyone with the link" and set permissions to "Editor"
 * When the user runs the application, they will be prompted with a question if they want to create a new table. If they do want to then they must type yes, else the application will still be running just listening to notifiations.
