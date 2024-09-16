@@ -62,25 +62,25 @@ All the best ✨.
 # Architectue of the application:
 My application is built using Spring Boot and PostgreSQL, providing robust real-time synchronization between multiple pairs of database tables and Google Sheets. The system architecture includes the following key components:
 
-**Real-Time Synchronization:**
+* **Real-Time Synchronization:**
 
-*Google Sheets Integration*: I use Google Apps Script to send notifications to my backend whenever changes are made in the Google Sheets. This ensures immediate updates and synchronization with the database.
+* *Google Sheets Integration*: I use Google Apps Script to send notifications to my backend whenever changes are made in the Google Sheets. This ensures immediate updates and synchronization with the database.
 
-_Database Integration_: PostgreSQL functions and triggers are employed to notify the backend of any changes detected in the local database. This setup guarantees that updates in the database are promptly reflected in Google Sheets.
+* _Database Integration_: PostgreSQL functions and triggers are employed to notify the backend of any changes detected in the local database. This setup guarantees that updates in the database are promptly reflected in Google Sheets.
 
 **Dynamic Configuration:**
 
-_Schema Management_: The application dynamically constructs schemas for both the database tables and corresponding Google Sheets. This automatic configuration simplifies the setup process and ensures consistency between data sources.
+* _Schema Management_: The application dynamically constructs schemas for both the database tables and corresponding Google Sheets. This automatic configuration simplifies the setup process and ensures consistency between data sources.
 
-_CRUD Operations_: My system supports full Create, Read, Update, and Delete (CRUD) operations for both Google Sheets and the PostgreSQL database. It seamlessly handles modifications and maintains synchronization across platforms.
+* _CRUD Operations_: My system supports full Create, Read, Update, and Delete (CRUD) operations for both Google Sheets and the PostgreSQL database. It seamlessly handles modifications and maintains synchronization across platforms.
 
-_Trigger and Function Management_: The application dynamically creates necessary triggers and functions for each table, facilitating automated responses to data changes.
+* _Trigger and Function Management_: The application dynamically creates necessary triggers and functions for each table, facilitating automated responses to data changes.
 
 **Deployment:**
 
-_Local Database:_ The PostgreSQL database is currently hosted locally.
+* _Local Database:_ The PostgreSQL database is currently hosted locally.
 
-_Remote Access_: The Spring Boot application is exposed to the internet using ngrok, allowing external access and interaction with the application.
+* _Remote Access_: The Spring Boot application is exposed to the internet using ngrok, allowing external access and interaction with the application.
 
 [Watch the video](https://drive.google.com/file/d/1ItHfXC3zhYEcZADYyoaXU_pSkeHIPba5/view?usp=sharing)
 
