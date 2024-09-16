@@ -95,9 +95,9 @@ My application is built using Spring Boot and PostgreSQL, providing robust real-
     ```
     ngrok http 8080
     ```
-
+### Application-Setup:
+* Visit google marketplace > search for sheets > click on the google sheets api and click enable > click on credentails and add a service account > click on the service account and select keys > create a new key, download it and put the JSON file into the directory right outside the src directory in the project.
 ### User-Setup:
-
 * The user has to make a Google Sheet and change access from "Restricted" to "Anyone with the link" and set permissions to "Editor"
 * When the user runs the application, they will be prompted with a question if they want to create a new table. If they do want to then they must type yes, else the application will still be running just listening to notifiations.
 * When they type yes, they will be asked to enter the sheet id. Then they must enter the google sheet's url
