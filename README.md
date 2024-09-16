@@ -103,7 +103,6 @@ My application is built using Spring Boot and PostgreSQL, providing robust real-
 * When they type yes, they will be asked to enter the sheet id. Then they must enter the google sheet's url
 * Then they will be prompted to enter the table name, primary key and column names of the table.
 * once the table is created on both the google sheets and the database, copy the App Script given in this repository.
-    ```
 * In the google sheets window click on Extentions > App Script.
 * Then paste the Appscrpt there.
 * then click on the clock like button on the left
