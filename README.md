@@ -1,7 +1,7 @@
 # Data Synchronization:
 This is a solution that enables real-time synchronization of data between a Google Sheet and a specified database (e.g., MySQL, PostgreSQL). The solution detects changes in the Google Sheet and update the database accordingly, and vice versa.
 
-### Architectue of the application:
+## Architectue of the application:
 My application is built using Spring Boot and PostgreSQL, providing robust real-time synchronization between multiple pairs of database tables and Google Sheets. The system architecture includes the following key components:
 
 * **Real-Time Synchronization:**
@@ -24,7 +24,7 @@ My application is built using Spring Boot and PostgreSQL, providing robust real-
 
 * _Remote Access_: The Spring Boot application is exposed to the internet using ngrok, allowing external access and interaction with the application.
 
-### Requirements for the Setup:
+## Requirements for the Setup:
 
 * **Java Development Kit (JDK):**
 
