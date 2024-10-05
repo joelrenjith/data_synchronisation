@@ -1,4 +1,4 @@
-# Data Synchronization:
+# Real-Time Data Synchronization:
 This is a solution that enables real-time synchronization of data between a Google Sheet and a specified database (e.g., MySQL, PostgreSQL). The solution detects changes in the Google Sheet and update the database accordingly, and vice versa.
 
 ## Architectue of the application:
